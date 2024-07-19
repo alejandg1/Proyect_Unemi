@@ -1,0 +1,62 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<section id="portfolio" class="portfolio section-bg">
+    <div class="section-title">
+        <h2>{{title}}</h2>
+      </div>
+
+      {% block add %}
+
+      {% endblock add %}
+      
+
+      {% block search %}
+
+      {% endblock search %}
+      
+
+    <br>
+
+    <table class="table table-bordered border-primary" colspan="{{ headers|length }}">
+
+        <thead>
+            <tr>
+                {% for head in headers  %}
+              <th scope="col">{{head}}</th>
+              
+                {% endfor %}
+            </tr>
+          </thead>
+
+          <tbody>
+            {% block rows %}
+
+
+            {% endblock rows %}
+
+          </tbody>
+    </table>
+
+
+{% block pagination %}
+
+{% endblock pagination %}
+
+
+{% block modal %}
+
+{% endblock modal %}
+
+</section>
+
+{% block script %}
+
+{% endblock script %}
+
+
+{% endblock content %}
+    

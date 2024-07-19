@@ -1,0 +1,43 @@
+{% extends "components/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="section-title">
+        <h2>{{title}}</h2>
+</div>
+
+{% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-triangle"></i>
+            <div>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} {% endif %}
+            {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+
+
+    {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" class="m-4"> 
+            {% csrf_token %}
+            {{form|crispy}}
+
+            {% block button %}
+            <button class="btn btn-outline-primary" type="submit">Guardar</button>
+            <a class="btn btn-outline-warning ms-2 float-end " href='{{list}}'>Cancelar</a>
+            {% endblock button %}
+
+        </form>
+    </div>
+</div>    
+
+{% block scripts %}
+
+{% endblock scripts %}
+
+{% endblock content %}

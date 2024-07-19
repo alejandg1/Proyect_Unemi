@@ -1,0 +1,15 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container">
+      <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+        <h1>404</h1>
+        <h2>El registro al cual estás tratando de accesar no existe</h2>
+        <a class="btn" href={% url "core:home" %}>Volver al inicio</a>
+      </section>
+
+    </div>
+  </main>
+{% endblock content %}

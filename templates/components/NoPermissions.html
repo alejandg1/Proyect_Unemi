@@ -1,0 +1,25 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+      <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+        {% if messages %}
+
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} {% endif %}
+                <h2>{{ message }}</h2>
+            {% endfor %}
+
+        {% else %}
+
+        <h2>No tienes los permisos necesarios para realizar esta acción.</h2>
+
+        {% endif %}
+        <a class="btn" href={% url "core:home" %}>Volver al inicio</a>
+      </section>
+    </div>
+
+  
+{% endblock content %}
