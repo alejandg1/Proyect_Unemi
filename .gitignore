@@ -1,6 +1,3 @@
-.venv/
-.env
-__pycache__/
 */__pycache__
 Unemi/
 media
@@ -116,3 +113,5 @@ venv.bak/
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+__pycache__
+Unemi/
