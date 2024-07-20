@@ -1,0 +1,22 @@
+.profile-image {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-image:hover {
+    transform: scale(1.2);
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #e08c3f;
+    color: white;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+#footer strong {
+    margin-left: 10px;
+}
