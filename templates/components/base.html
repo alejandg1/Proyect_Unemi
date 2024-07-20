@@ -30,29 +30,34 @@
     <nav id="navbar" class="navbar nav-menu">
       <ul>
         {% if request.path == '/' %}
-        <li><a href="{% url 'core:home' %}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="{% url 'core:home' %}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span> Home</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:home' %}" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="{% url 'core:home' %}" class="nav-link scrollto"><i class="bx bx-home"></i> <span> Home</span></a></li>
         {% endif %}
 
         {% if request.path == '/about/'  %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span>Perfiles</span></a></li>
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Perfiles</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Perfiles</span></a></li>
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Perfiles</span></a></li>
         {% endif %}
           
-        {% if not user.is_authenticated %}
-        <li><a href="{% url 'core:login' %}" class="nav-link scrollto"><i class="bi bi-box-arrow-in-right"></i> <span>Ingresar</span></a></li>
-        {% elif request.path == '/login/' and not user.is_authenticated  %}
-        <li><a href="{% url 'core:login' %}" class="nav-link scrollto active"><i class="bi bi-box-arrow-in-right"></i> <span>Ingresar</span></a></li>
+        {% if request.path == '/about/'  %}
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Collage</span></a></li>
+        {% else %}
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Collage</span></a></li>
+        {% endif %}
+          
+        {% if request.path == '/about/'  %}
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
+        {% else %}
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
         {% endif %}
 
-        {% if not user.is_authenticated %}
-        <li><a href="{% url 'core:register' %}" class="nav-link scrollto"><i class="bi bi-r-circle-fill"></i> <span>Registrarse</span></a></li>
-        {% elif request.path == '/register/' and not user.is_authenticated %}
-        <li><a href="{% url 'core:register' %}" class="nav-link scrollto active"><i class="bi bi-r-circle-fill"></i> <span>Registrarse</span></a></li>
+        {% if request.path == '/about/'  %}
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Chat</span></a></li>
+        {% else %}
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Chat</span></a></li>
         {% endif %}
-          
       </ul>
     </nav>
   </header>
