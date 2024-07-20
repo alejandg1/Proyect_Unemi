@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.core.views import home, modules, about, profile, logs
+from apps.core.views import collage, home, about, profile, logs,team,chat
 # from apps.core.models import User
 # from django.http import HttpResponse
 
@@ -15,10 +15,12 @@ from apps.core.views import home, modules, about, profile, logs
 app_name = 'core'
 urlpatterns = [
     path('', home.HomeTemplateView.as_view(), name="home"),
-    path('modules/', modules.ModulesTemplateView.as_view(), name="modules"),
+    path('collage/', collage.CollageTemplateView.as_view(), name="collage"),
     path('about/', about.AboutTemplateView.as_view(), name="about"),
     path('profile/', profile.ProfileTemplateView.as_view(), name="profile"),
     path('login/', logs.LoginView.as_view(), name="login"),
+    path('team/', team.TeamTemplateView.as_view(), name="team"),
+    path('chat/', chat.ChatTemplateView.as_view(), name="chat"),
     path('withoutpermissions/', logs.NoPermissions.as_view(),
          name="withoutpermissions"),
 ]
