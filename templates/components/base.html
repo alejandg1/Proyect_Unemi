@@ -41,22 +41,22 @@
         <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Perfiles</span></a></li>
         {% endif %}
           
-        {% if request.path == '/about/'  %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Collage</span></a></li>
+        {% if request.path == '/collage/'  %}
+        <li><a href="{% url 'core:collage' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Collage</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Collage</span></a></li>
+        <li><a href="{% url 'core:collage' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Collage</span></a></li>
         {% endif %}
           
-        {% if request.path == '/about/'  %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
+        {% if request.path == '/team/'  %}
+        <li><a href="{% url 'core:team' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
+        <li><a href="{% url 'core:team' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
         {% endif %}
 
-        {% if request.path == '/about/'  %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Chat</span></a></li>
+        {% if request.path == '/chat/'  %}
+        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Chat</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Chat</span></a></li>
+        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Chat</span></a></li>
         {% endif %}
       </ul>
     </nav>
