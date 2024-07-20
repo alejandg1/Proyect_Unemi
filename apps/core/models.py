@@ -23,4 +23,3 @@ class Image(models.Model):
     Img = models.ImageField(upload_to='images/')
     Type = models.BinaryField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField(blank=True, null=True)
