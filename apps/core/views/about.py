@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from apps.core.mixins import UserGroupMixin
 
-class AboutTemplateView(UserGroupMixin, TemplateView):
+
+class AboutTemplateView(TemplateView):
     template_name = 'index/about.html'
