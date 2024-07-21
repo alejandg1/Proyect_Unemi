@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -52,6 +51,11 @@
         <li><a href="{% url 'core:team' %}" class="nav-link scrollto active"><i class="bi bi-people"></i> <span> Team</span></a></li>
         {% else %}
         <li><a href="{% url 'core:team' %}" class="nav-link scrollto"><i class="bi bi-people"></i> <span> Team</span></a></li>
+        {% endif %}
+        {% if request.path == '/asist/'  %}
+        <li><a href="{% url 'core:asist' %}" class="nav-link scrollto active"><i class="bi bi-people"></i> <span> Asistente </span></a></li>
+        {% else %}
+        <li><a href="{% url 'core:asist' %}" class="nav-link scrollto"><i class="bi bi-people"></i> <span> Asistente</span></a></li>
         {% endif %}
       </ul>
     </nav>
