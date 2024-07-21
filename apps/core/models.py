@@ -1,15 +1,25 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# Create your models here.
-class Costumer(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    style =  models.TextField(max_length=100, null=True, blank=True)
-    
+
+class User(AbstractUser):
+    username = models.CharField(max_length=50, unique=True)
+    first_name = models.CharField(max_length=50, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    is_temp = models.BooleanField(default=False)
+
+    USERNAME_FIELD = "username"
+
+    class Meta:
+        verbose_name = ("Usuario")
+        verbose_name_plural = ("Usuarios")
+
     def __str__(self):
-        return "{} {} - Estilo: {}".format(
-            self.last_name,
-            self.first_name,
-            self.style
-            
-    )
+        return "Usuario: {}".format(self.username)
+
+
+class Image(models.Model):
+    Img = models.ImageField(upload_to='images/')
+    Type = models.BinaryField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

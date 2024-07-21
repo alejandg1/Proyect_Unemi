@@ -1,19 +1,24 @@
 {% extends "components/base.html" %}
 {% load static %}
-
-
 {% block content %}
-  <section id="hero" class="d-flex flex-column justify-content-center">
-    <div class="container" data-aos="zoom-in" data-aos-delay="300">
-      <h1> Collage</h1>
-      <p><span class="typed" data-typed-items="Collage de fotos "></span></p>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-    </div>
-  </section>
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="section-title">
+        <h2>{{title}}</h2>
+    <div></div>
+  </div>
+        <h2>Unempic</h2>
+        <p>Tu creatividad, Nuestra IA</p>
+  </div>    
+
+  </div>
+        <form method="POST" enctype="multipart/form-data" class="m-4"> 
+            {% csrf_token %}
+            {{form|crispy}}
+            {% block button %}
+            <button class="btn btn-outline-primary" type="submit">Login</button>
+            {% endblock button %}
+        </form>
+  </div>    
+</div>
   {% endblock content %}
