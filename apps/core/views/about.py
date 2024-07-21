@@ -12,7 +12,6 @@ class AboutTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['teachers'] = self.teachers
-        print(self.teachers)
         return context
 
 class TeacherDataResponse(View):
@@ -20,7 +19,6 @@ class TeacherDataResponse(View):
         
         data = json.loads(request.body)
         teacher_id = data['teacher_id']
-        print(teacher_id)
         
         teacher = Teacher.objects.get(id = teacher_id) 
         
@@ -33,17 +31,14 @@ class TeacherDataResponse(View):
         projects = Projects.objects.filter(teacher = teacher)
         if projects:
             projects = [project.to_dict() for project in projects]
-        print(projects)
         
         articles = Articles.objects.filter(teacher = teacher)
         if articles:
             articles = [article.to_dict() for article in articles]
-        print(articles)
         
         research = Research.objects.filter(teacher = teacher)
         if research:
             research = [research.to_dict() for research in research]
-        print(research)
         
         data = {   
                 'success': True, 

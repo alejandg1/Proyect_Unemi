@@ -21,7 +21,7 @@ async function openModal(id) {
             body: JSON.stringify({
                 teacher_id: id
             })
-            
+
         });
         
         if (!response.ok) {
@@ -29,11 +29,6 @@ async function openModal(id) {
         }
 
         const data = await response.json();
-
-        console.log(data)
-        console.log(data.projects)
-        console.log(data.articles)
-        console.log(data.research)
 
         buttonShow = document.getElementById(`buttonShow-${id}`)
         buttonShow.style.display = 'none'

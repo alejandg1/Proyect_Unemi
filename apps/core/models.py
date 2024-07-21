@@ -25,7 +25,7 @@ class Image(models.Model):
 class Teacher(models.Model):
     name = models.CharField(max_length=100)
     img = models.ImageField(upload_to='images/')
-    biography = models.CharField(max_length=1000)
+    biography = models.CharField(max_length=1000, null = True, blank = True, default = None)
     cv = models.FileField(upload_to='uploads/') 
     
     def __str__(self):
