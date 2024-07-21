@@ -17,8 +17,6 @@ urlpatterns = [
     path('', home.HomeTemplateView.as_view(), name="home"),
     path('collage/', collage.CollageTemplateView.as_view(), name="collage"),
     path('about/', about.AboutTemplateView.as_view(), name="about"),
-    path('profile/', profile.ProfileTemplateView.as_view(), name="profile"),
-    path('login/', logs.LoginView.as_view(), name="login"),
     path('team/', team.TeamTemplateView.as_view(), name="team"),
     path('chat/', chat.ChatTemplateView.as_view(), name="chat"),
     path('withoutpermissions/', logs.NoPermissions.as_view(),
