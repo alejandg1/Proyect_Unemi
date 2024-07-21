@@ -13,10 +13,11 @@
     width: 100%;
     background-color: #e08c3f;
     color: white;
-    padding: 10px 0;
+    padding: 1rem 0;
     z-index: 1000;
+    text-align: center;
+    margin-top: auto;
 }
-
 #footer strong {
-    margin-left: 10px;
+    margin-left: 6px;
 }
