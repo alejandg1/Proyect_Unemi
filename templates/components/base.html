@@ -19,6 +19,7 @@
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/team.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/base.css' %}" rel="stylesheet">
+
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -37,16 +38,11 @@
         {% endif %}
 
         {% if request.path == '/about/'  %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Perfiles</span></a></li>
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bi bi-person-standing"></i> <span> Perfiles</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Perfiles</span></a></li>
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bi bi-person-standing"></i> <span> Perfiles</span></a></li>
         {% endif %}
           
-        {% if request.path == '/collage/'  %}
-        <li><a href="{% url 'core:collage' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Collage</span></a></li>
-        {% else %}
-        <li><a href="{% url 'core:collage' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Collage</span></a></li>
-        {% endif %}
           
         {% if request.path == '/team/'  %}
         <li><a href="{% url 'core:team' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
@@ -71,7 +67,7 @@
 
   </main>
   <footer id="footer">
-    <strong>Copyright UNEMI</strong>
+    <p>&copy; 2024 Unempic. Todos los derechos reservados.</p>
   </footer>
 
   <div id="preloader"></div>

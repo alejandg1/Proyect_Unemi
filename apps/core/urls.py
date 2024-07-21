@@ -1,5 +1,7 @@
 from django.urls import path
 from apps.core.views import collage, home, about, profile, logs,team,chat
+from django.conf.urls.static import static
+from django.conf import settings
 # from apps.core.models import User
 # from django.http import HttpResponse
 
@@ -17,10 +19,10 @@ urlpatterns = [
     path('', home.HomeTemplateView.as_view(), name="home"),
     path('collage/', collage.CollageTemplateView.as_view(), name="collage"),
     path('about/', about.AboutTemplateView.as_view(), name="about"),
-    path('profile/', profile.ProfileTemplateView.as_view(), name="profile"),
-    path('login/', logs.LoginView.as_view(), name="login"),
+    path('data_response/', about.TeacherDataResponse.as_view(), name="response"),
     path('team/', team.TeamTemplateView.as_view(), name="team"),
     path('chat/', chat.ChatTemplateView.as_view(), name="chat"),
     path('withoutpermissions/', logs.NoPermissions.as_view(),
          name="withoutpermissions"),
-]
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

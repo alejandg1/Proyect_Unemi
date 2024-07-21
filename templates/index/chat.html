@@ -2,12 +2,50 @@
 {% load static %}
 
 {% block content %}
-<section id="modules" class="services">
-    <div class="container" data-aos="fade-up">
-  
-      
-        <h2>Chat</h2>
-       
+<section id="chat-photo" class="chat-photo">
+    <div class="container">
+        <div class="row">
+            <!-- Columna para el chat -->
+            <div class="col-md-6 chat-section">
+                <h2>Chat</h2>
+                <div class="chat-box">
+                    <div class="messages">
+                        <!-- Mensajes de ejemplo -->
+                        <div class="message">
+                            <div class="message-content">
+                                <p><strong>User:</strong> Hola, ¿cómo estás?</p>
+                            </div>
+                        </div>
+                        <div class="message">
+                            <div class="message-content">
+                                <p><strong>Support:</strong> ¡Hola! Estoy bien, ¿en qué puedo ayudarte?</p>
+                            </div>
+                        </div>
+                        <!-- Los mensajes se agregarán aquí dinámicamente -->
+                    </div>
+                </div>
+                <form class="chat-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Escribe tu mensaje aquí..." required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+            
+            <!-- Columna para subir o tomar fotos -->
+            <div class="col-md-6 photo-section">
+                <h2>Subir o Tomar Foto</h2>
+                <div class="photo-options">
+                    <button class="btn btn-secondary" id="uploadPhoto">Subir Foto</button>
+                    <button class="btn btn-secondary" id="takePhoto">Tomar Foto</button>
+                    <!-- Aquí puedes agregar formularios o campos para subir fotos -->
+                </div>
+                <input type="file" id="photoUpload" style="display: none;">
+                <div id="camera" style="display: none;">
+                    <!-- Aquí puedes integrar un componente de cámara si es necesario -->
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
+</section>
 {% endblock content %}
