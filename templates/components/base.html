@@ -17,6 +17,7 @@
 
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/base.css' %}" rel="stylesheet">
+  {% block extra_css %}{% endblock extra_css %}
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -41,6 +42,12 @@
         <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bi bi-person"></i> <span> Perfiles</span></a></li>
         {% endif %}
 
+        {% if request.path == '/asist/'  %}
+        <li><a href="{% url 'core:asist' %}" class="nav-link scrollto active"><i class="bi bi-chat"></i> <span> Asistente </span></a></li>
+        {% else %}
+        <li><a href="{% url 'core:asist' %}" class="nav-link scrollto"><i class="bi bi-chat"></i> <span> Asistente</span></a></li>
+        {% endif %}
+
         {% if request.path == '/chat/'  %}
         <li><a href="{% url 'core:chat' %}" class="nav-link scrollto active"><i class="bi bi-image"></i> <span> Chat</span></a></li>
         {% else %}
@@ -52,11 +59,7 @@
         {% else %}
         <li><a href="{% url 'core:team' %}" class="nav-link scrollto"><i class="bi bi-people"></i> <span> Team</span></a></li>
         {% endif %}
-        {% if request.path == '/asist/'  %}
-        <li><a href="{% url 'core:asist' %}" class="nav-link scrollto active"><i class="bi bi-people"></i> <span> Asistente </span></a></li>
-        {% else %}
-        <li><a href="{% url 'core:asist' %}" class="nav-link scrollto"><i class="bi bi-people"></i> <span> Asistente</span></a></li>
-        {% endif %}
+
       </ul>
     </nav>
   </header>

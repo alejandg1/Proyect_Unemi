@@ -1,12 +1,16 @@
 {% extends "components/base.html" %}
 {% load static %}
-{% block content %}
-{% load crispy_forms_tags %}
-<div class="container mt-5">
-    <div class="text-center mb-5">
-        <h1 class="text-primary">Unempic</h1>
-        <p class="lead">Tu creatividad, Nuestra IA</p>
-    </div>    
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="main-content">
+    <div class="title-container">
+        <h1 class="main-title">Unempic</h1>
+        <p class="subtitle">Tu creatividad, nuestra inteligencia artificial</p>
+    </div>
+    <div></div>
 </div>
 {% endblock content %}
