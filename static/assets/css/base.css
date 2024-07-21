@@ -11,13 +11,14 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #e08c3f;
-    color: white;
-    padding: 1rem 0;
+    background-color: #fff;
+    color: #000000;
     z-index: 1000;
-    text-align: center;
+    margin-left: 40px;
     margin-top: auto;
 }
-#footer strong {
-    margin-left: 6px;
+#footer p {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
 }

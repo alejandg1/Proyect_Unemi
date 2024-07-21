@@ -37,22 +37,21 @@
         {% endif %}
 
         {% if request.path == '/about/'  %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bi bi-person-standing"></i> <span> Perfiles</span></a></li>
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto active"><i class="bi bi-person"></i> <span> Perfiles</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bi bi-person-standing"></i> <span> Perfiles</span></a></li>
-        {% endif %}
-          
-          
-        {% if request.path == '/team/'  %}
-        <li><a href="{% url 'core:team' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
-        {% else %}
-        <li><a href="{% url 'core:team' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
+        <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bi bi-person"></i> <span> Perfiles</span></a></li>
         {% endif %}
 
         {% if request.path == '/chat/'  %}
-        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Chat</span></a></li>
+        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto active"><i class="bi bi-image"></i> <span> Chat</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Chat</span></a></li>
+        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto"><i class="bi bi-image"></i> <span> Chat</span></a></li>
+        {% endif %}
+
+        {% if request.path == '/team/'  %}
+        <li><a href="{% url 'core:team' %}" class="nav-link scrollto active"><i class="bi bi-people"></i> <span> Team</span></a></li>
+        {% else %}
+        <li><a href="{% url 'core:team' %}" class="nav-link scrollto"><i class="bi bi-people"></i> <span> Team</span></a></li>
         {% endif %}
       </ul>
     </nav>
@@ -70,7 +69,6 @@
   </footer>
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
