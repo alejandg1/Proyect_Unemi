@@ -1,18 +1,7 @@
 from django.urls import path
-from apps.core.views import collage, home, about, profile, logs,team,chat
+from apps.core.views import collage, home, about, logs, team, chat
 from django.conf.urls.static import static
 from django.conf import settings
-# from apps.core.models import User
-# from django.http import HttpResponse
-
-
-# def print_user_permissions(request):
-#     user = User.objects.get(username=request.user.username)
-#     permissions = user.get_all_permissions()
-#     print("Permisos del usuario {}: {}".format(user.username, permissions))
-#
-#     return HttpResponse("Permisos impresos en la consola.")
-
 
 app_name = 'core'
 urlpatterns = [

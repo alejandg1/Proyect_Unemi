@@ -3,7 +3,6 @@ from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
 import base64
 from django.utils import timezone
-import os
 from dotenv import load_dotenv
 from io import BytesIO
 from django.core.files.base import ContentFile
@@ -116,10 +115,7 @@ class DallEChat(WebsocketConsumer):
             
             # print(response.json())
 
-            
-            # Aquí habria que editar luego, la imagen se tiene que descargar desde la URL con el paquete de requests
-            
-            # dalle_decoded = base64.b64decode(dalle64) 
+            # Se guarda la imagén que envia el usuario por el momento
             
             filename = 'image_{}.png'.format(str(uuid.uuid4()))
             
