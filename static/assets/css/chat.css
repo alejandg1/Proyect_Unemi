@@ -1,0 +1,135 @@
+/* Reset de estilos y estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.chat-container {
+    width: 50%;
+    max-width: 800px; /* Aumentamos el ancho máximo del contenedor */
+    height: 500px;
+    background-color: #fffefe;
+    border: 2px solid #e2e0e9; /* Borde del mismo color que el fondo inicial */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex; /* Hacemos que el contenedor sea flexible */
+    justify-content: flex-start; /* Alineamos el contenido a la izquierda */
+    margin-left: 20px; /* Añadimos margen izquierdo para separar del borde izquierdo */
+    margin-top: 50px;
+}
+
+
+.chat {
+    display: flex;
+}
+
+.chat-section {
+    flex: 1;
+    padding: 20px;
+}
+
+.chat-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.messages {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 20px;
+}
+
+.message-content {
+    padding: 10px;
+    background-color: #dddcdc;
+    border-radius: 8px;
+}
+
+.chat-form {
+    display: flex;
+    margin-top: 200px;
+    border-radius: 5px;
+    border: 1px solid rgb(233, 233, 233);
+    position: absolute;
+}
+
+.chat-form .form-control {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
+.chat-form button {
+    padding: 12px 24px;
+    background-color: #2b00eb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.chat-form button:hover {
+    background-color: #1a0080;
+}
+
+/* Image Upload Section */
+.image-upload-section {
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-upload-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3;
+}
+
+#fileUpload {
+    display: none;
+}
+
+.uploaded-image {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.uploaded-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
