@@ -59,6 +59,7 @@
         <li><a href="{% url 'core:chat' %}" class="nav-link scrollto active"><i class="bi bi-chat-left-text"></i> <span> Chat</span></a></li>
         {% else %}
         <li><a href="{% url 'core:chat' %}" class="nav-link scrollto"><i class="bi bi-chat-left-text"></i> <span> Chat</span></a></li>
+        {% endif %}
 
         {% if request.path == '/asist/'  %}
         <li><a href="{% url 'core:asist' %}" class="nav-link scrollto active"><i class="bi bi-chat"></i> <span> Asistente </span></a></li>
