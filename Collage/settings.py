@@ -102,7 +102,7 @@ USE_TZ = True
 
 AUTH_USER_MODEL = "core.User"
 STATIC_URL = '/static/'
-STATIC_URL = '/static/'  # url de archivos estaticos
+
 # carpeta fisica de archivos estaticos
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 # carpeta fisica de archivos de Imagenes

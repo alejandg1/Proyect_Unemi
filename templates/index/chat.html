@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
     .chat-box {
@@ -26,6 +27,27 @@
         display: block;
         margin-top: 10px;
     }
+    .input-group .btn {
+        border-radius: 0; /* Alinea el botón con el campo de entrada */
+    }
+
+    .bordered {
+        border: 3px solid #007bff; /* Borde azul */
+        border-radius: 10px; /* Bordes redondeados */
+        overflow: hidden; /* Asegura que el contenido no se desborde */
+        display: flex; /* Flexbox para centrar el contenido */
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: center; /* Centrar verticalmente */
+        width: 320px; /* Center */
+        height: 240px; /* Ajusta según sea necesario */
+    }
+    
+    .camera-preview video, .captured-frame canvas {
+        width: 320px;
+        height: 240px;
+        max-height: 100%;
+    }
+    
 </style>
 
 <section id="chat-photo" class="chat-photo">
@@ -33,34 +55,47 @@
         <div class="row">
 
             <div class="col-md-6 chat-section">
-                <h2>Chat</h2>
+                <h2 class="section-title text-primary text-center">Chat</h2>
                 <div class="chat-box">
                     <div id="messages" class="messages">
                     </div>
                 </div>
 
-                <form id ="chatForm" class="chat-form">
-                    <div class="form-group">
+                <form id="chatForm" class="chat-form">
+                    <div class="input-group">
                         <input id="messageInput" type="text" class="form-control" placeholder="Escribe tu mensaje aquí..." required>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> <!-- Ícono de enviar -->
+                            </button>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
 
             </div>
             
             <!-- Columna para subir o tomar fotos -->
             <div class="col-md-6 photo-section">
-                <h2>Subir o Tomar Foto</h2>
-                <div class="photo-options">
-                    <button class="btn btn-secondary" id="uploadPhoto">Subir Foto</button>
+                <h2 class="section-title text-primary text-center">Cámara web</h2>
+                <div class="photo-options d-flex justify-content-center align-items-center mb-3">
                     <button class="btn btn-secondary" id="takePhoto">Tomar Foto</button>
-                    <!-- Aquí puedes agregar formularios o campos para subir fotos -->
                 </div>
                 <input type="file" id="photoUpload" style="display: none;">
-                <div id="camera" style="display: none;">
-                    <!-- Aquí puedes integrar un componente de cámara si es necesario -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="camera" class="camera-preview bordered">
+                            <video id="video" width="320" height="240" autoplay></video>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="capturedFrame" class="captured-frame bordered">
+                            <canvas id="canvas" width="320" height="240"></canvas>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div> 
+            
+            
         </div>
     </div>
 </section>

@@ -1,15 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
     
+    var video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const takePhotoButton = document.getElementById('takePhoto');
+ 
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+        video.srcObject = stream;
+    })
+    .catch(function(error) {
+        console.log("Ha ocurrido un error con la cámara: ", error);
+        alert(error)
+    });
+
+    takePhotoButton.addEventListener('click', function() {
+        if (video.srcObject){
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const image = canvas.toDataURL('image/jpeg');
+        }
+    })
+
     const socket = new WebSocket('ws://' + window.location.host + '/dallechat/');
 
     console.log(socket)
 
     socket.onopen = function(e) {
-        console.log('WebSocket connection established');
+        console.log('Conexión establecida con el WebSocket');
     };
 
     socket.onclose = function(e) {
-        console.log('WebSocket connection closed');
+        console.log('Se cerró la conexión con el WebSocket');
     };
 
     socket.onmessage = function(e) {
@@ -22,10 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
             messageItem.innerHTML = `<p></strong> ${data.message}</p><p><small>${data.datetime}</small></p>`;
             messages.appendChild(messageItem);
             
-            if (data.image) {
+            if (data.img) {
+                const imageUrl = data.img
                 const imageItem = document.createElement('img');
-                imageItem.src = data.image;
-                imageItem.alt = 'Generated Image';
+                imageItem.src = imageUrl;
+                imageItem.alt = 'Imagen generada';
                 imageItem.style.maxWidth = '200px';
                 messages.appendChild(imageItem);
             }
@@ -39,22 +61,37 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     document.getElementById('chatForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevents the form from submitting the traditional way
+        event.preventDefault();
         const input = document.getElementById('messageInput');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const isCanvasEmpty = imageData.data.every(value => value === 0);
+
+        if (input.value.trim() === '') {
+            const messages = document.getElementById('messages');
+            const messageItem = document.createElement('li');
+            messageItem.innerHTML = `<p></strong>No puedes enviar mensajes vacios!</p>`;
+            messages.appendChild(messageItem);
+            return
+        }
+
+        if (isCanvasEmpty) {
+            const messages = document.getElementById('messages');
+            const messageItem = document.createElement('li');
+            messageItem.innerHTML = `<p><strong>No puedes enviar mensajes sin contenido en el lienzo!</strong></p>`;
+            messages.appendChild(messageItem);
+            return
+        }
+
         const message = input.value;
+        const canvasDataURL = canvas.toDataURL('image/jpeg');
+
         socket.send(JSON.stringify({
-            'message': message
+            'message': message,
+            'img64': canvasDataURL
         }));
-        input.value = ''; // Clear input field
-    });
-
-    document.getElementById('uploadPhoto').addEventListener('click', function() {
-        document.getElementById('photoUpload').click();
-    });
-
-    // Add functionality for taking photo if needed
-    document.getElementById('takePhoto').addEventListener('click', function() {
-        document.getElementById('camera').style.display = 'block';
+        input.value = ''; 
     });
 
 })

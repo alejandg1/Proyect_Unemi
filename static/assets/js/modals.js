@@ -33,9 +33,6 @@ async function openModal(id) {
         buttonShow = document.getElementById(`buttonShow-${id}`)
         buttonShow.style.display = 'none'
 
-        buttonLess = document.getElementById(`buttonLess-${id}`)
-        buttonLess.style.display = 'block'
-
         container = document.getElementById(`info-${id}`)
         container.innerText = ""
 
@@ -93,8 +90,21 @@ async function openModal(id) {
 
         }
 
-        container.appendChild(dataItem);
+        if (!dataItem.hasChildNodes()) {
 
+            buttonLess = document.getElementById(`buttonLess-${id}`)
+            buttonLess.style.display = 'block'
+            buttonLess.onclick = null
+            var button = buttonLess.querySelector('button');
+            button.textContent = "No hay datos disponibles";
+
+            return
+        }
+
+        buttonLess = document.getElementById(`buttonLess-${id}`)
+        buttonLess.style.display = 'block'
+        
+        container.appendChild(dataItem);
         container.style.display = "block"
 
     } catch (error) {
