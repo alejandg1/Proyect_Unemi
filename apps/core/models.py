@@ -18,8 +18,8 @@ class User(AbstractUser):
     def __str__(self):
         return "Usuario: {}".format(self.username)
 
-class Image(models.Model):
-    Img = models.ImageField(upload_to='images/')
+class ImageDallE(models.Model):
+    Img = models.ImageField(upload_to='dalle/')
     Type = models.BinaryField()
     
 class Teacher(models.Model):
