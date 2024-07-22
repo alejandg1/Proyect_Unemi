@@ -18,15 +18,15 @@ class User(AbstractUser):
     def __str__(self):
         return "Usuario: {}".format(self.username)
 
-class ImageDallE(models.Model):
-    Img = models.ImageField(upload_to='dalle/')
+class GeneratedImage(models.Model):
+    Img = models.ImageField(upload_to='generated/')
     Type = models.BinaryField()
     
 class Teacher(models.Model):
     name = models.CharField(max_length=100)
     img = models.ImageField(upload_to='images/')
     biography = models.CharField(max_length=1000, null = True, blank = True, default = None)
-    cv = models.FileField(upload_to='uploads/') 
+    cv = models.FileField(upload_to='uploads/', default= None, blank = True, null= True) 
     
     def __str__(self):
         return self.name

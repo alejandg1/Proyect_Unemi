@@ -1,16 +1,15 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
-from openai import OpenAI
 import base64
 from django.utils import timezone
 import os
 from dotenv import load_dotenv
-from pathlib import Path
 from io import BytesIO
 from django.core.files.base import ContentFile
-from apps.core.models import ImageDallE
+from apps.core.models import GeneratedImage
 import uuid
+import requests
 from PIL import Image
 
 load_dotenv()
@@ -64,7 +63,8 @@ class DallEChat(WebsocketConsumer):
         
         print("Enviando datos..")
         print(message)
-        response = self.dalle_response(message)
+        
+        response = self.dalle_response(message, img64)
         
         
         if sender_id == current_user_id:
@@ -79,63 +79,65 @@ class DallEChat(WebsocketConsumer):
             print("Mensaje enviado")
         
     
-    def dalle_response(self, message):
+    def dalle_response(self, message, img64):
         try:            
             print(message)
             
-            # decoded = base64.b64decode(img64) 
+            decoded = base64.b64decode(img64) 
               
-            # No decodificar por el momento
-              
-            # image_io = BytesIO(decoded)
+            image_io = BytesIO(decoded)
             
-            # with Image.open(image_io) as img:
-            #     img = img.convert('RGBA')
-            #     img_io = BytesIO()
-            #     img.save(img_io, format='PNG')
-            #     img_io.seek(0)
-            #     image_data = img_io.getvalue()    
+            with Image.open(image_io) as img:
+                img = img.convert('RGBA')
+                img_io = BytesIO()
+                img.save(img_io, format='PNG')
+                img_io.seek(0)
+                image_data = img_io.getvalue()    
                 
-            #     if len(image_data) > 4 * 1024 * 1024:
-            #         print('La imagen debe ser menor a 4 MB.')   
-                            
-            key = os.getenv("API_KEY")
+                if len(image_data) > 4 * 1024 * 1024:
+                    print('La imagen debe ser menor a 4 MB.')   
+                    
+
+            response = requests.post(
+            "https://api.deepai.org/api/image-editor",
+            files=
+            {
+                'image': image_data,
+                'text': str(message),
+                
+            },
             
-            client = OpenAI(api_key= key)
+            headers={'api-key': '7bcc3b74-8c5e-4df7-920b-819808d2b905'}
             
-            response = client.images.generate(
-            # image= image_data,
-            prompt= str(message),
-            model="dall-e-3",
-            quality= 'standard',
-            n= 1,
-            response_format= 'url',
-            size= "1024x1024"
             )
+            if response.status_code != 200:
+                print("Error")
+                print(response.text)
             
-            print(response)
-            
-            dalle_img = response.data[0].url
-            
-            print(dalle_img)
+            # print(response.json())
+
             
             # Aquí habria que editar luego, la imagen se tiene que descargar desde la URL con el paquete de requests
             
             # dalle_decoded = base64.b64decode(dalle64) 
             
-            # filename = 'image_{}'.format(str(uuid.uuid4()))
+            filename = 'image_{}.png'.format(str(uuid.uuid4()))
             
-            # image_model = ImageDallE()
+            image_model = GeneratedImage()
                 
-            # image_model.Img.save(filename, ContentFile(dalle_decoded))   
+            image_model.Img.save(name=filename, content=ContentFile(image_data, name=filename))   
             
-            # image_model.Type = dalle_decoded
+            image_model.Type = image_data
             
-            # image_model.save()
+            image_model.save()
             
-            return dalle_img
+            img_url = image_model.Img.url
+            
+            print("Imagen guardada")
+            
+            return img_url
             
         except Exception as e:
-            print(f"Error al generar la imagen con DALL-E: {e}")
+            print(f"Error al generar la imagen: {e}")
             return None
             
