@@ -48,19 +48,7 @@
         <li><a href="{% url 'core:about' %}" class="nav-link scrollto"><i class="bi bi-person"></i> <span> Perfiles</span></a></li>
         {% endif %}
           
-          
-        {% if request.path == '/team/'  %}
-        <li><a href="{% url 'core:team' %}" class="nav-link scrollto active"><i class="bi bi-microsoft-teams"></i> <span> Team</span></a></li>
-        {% else %}
-        <li><a href="{% url 'core:team' %}" class="nav-link scrollto"><i class="bi bi-microsoft-teams"></i> <span> Team</span></a></li>
-        {% endif %}
-
-        {% if request.path == '/chat/'  %}
-        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto active"><i class="bi bi-chat-left-text"></i> <span> Chat</span></a></li>
-        {% else %}
-        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto"><i class="bi bi-chat-left-text"></i> <span> Chat</span></a></li>
-        {% endif %}
-
+    
         {% if request.path == '/asist/'  %}
         <li><a href="{% url 'core:asist' %}" class="nav-link scrollto active"><i class="bi bi-chat"></i> <span> Asistente </span></a></li>
         {% else %}
