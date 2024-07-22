@@ -1,6 +1,7 @@
 function closeModal(id) {
     container = document.getElementById(`info-${id}`)
     container.style.display = "none"
+    
 
     buttonShow = document.getElementById(`buttonShow-${id}`)
     buttonShow.style.display = 'block'

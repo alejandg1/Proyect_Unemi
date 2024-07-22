@@ -1,46 +1,18 @@
 {% extends "components/base.html" %}
 {% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
+{% endblock extra_css %}
+
 {% block content %}
-{% load crispy_forms_tags %}
-<div class="container mt-5">
-    <div class="text-center mb-5">
-        <h1 class="display-4">{{ title }}</h1>
-        
-        
+<div class="content-wrapper">
+    <div class="title-container">
+        <h1 class="main-title">UnemPic</h1>
+        <p class="subtitle">Tu creatividad, nuestra inteligencia artificial</p>
     </div>
-
-    <div class="text-center mb-5">
-        <h2 class="text-primary">Unempic</h2>
-        <p class="lead">Tu creatividad, Nuestra IA</p>
-    </div>    
-
-    <div class="row justify-content-center mb-5">
-        <div class="col-md-6 text-center">
-            <h3>Sube tus fotos y crea un collage</h3>
-            <form method="POST" enctype="multipart/form-data" class="p-4 border rounded shadow-sm mt-4 bg-light">
-                {% csrf_token %}
-                {{ form|crispy }}
-                {% block button %}
-                <div class="text-center mt-3">
-                    <button class="btn btn-primary btn-lg" type="submit">Subir foto </button>
-                </div>
-                {% endblock button %}
-            </form>
-        </div>
-    </div>
-
-    <div class="row mb-5">
-        <div class="col-md-12 text-center">
-            <h3>Ejemplos de Collages</h3>
-            <p class="lead">Explora algunos collages creados por otros usuarios</p>
-        </div>
-        <div class="col-md-12 text-center">
-            <div class="d-flex justify-content-around flex-wrap">
-                <img src="{% static 'assets/img/example1.jpg' %}" class="img-thumbnail m-2" alt="Ejemplo 1">
-                <img src="{% static 'assets/img/example2.jpg' %}" class="img-thumbnail m-2" alt="Ejemplo 2">
-                <img src="{% static 'assets/img/example3.jpg' %}" class="img-thumbnail m-2" alt="Ejemplo 3">
-            </div>
-        </div>
+    <div class="Unem-ia">
+        <img src="{% static 'assets/img/IA.png' %}" class="card-img-top" alt="Person">
     </div>
 </div>
 {% endblock content %}
