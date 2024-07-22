@@ -1,31 +1,31 @@
-/* styles.css */
-
-.sub-title {
-    font-family: 'Courier New', Courier, monospace;
+H1{
+    margin-top: 20px;
     text-align: center;
+    color: black;
+    font-weight: bold;
 }
 
 .card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 0;
 }
 
 .card {
-    width: 300px; /* Ancho de la tarjeta */
-    height: 310px; /* Alto de la tarjeta */
+    width: 300px; 
+    height: 300px; 
     margin: 20px;
-    padding: 20px;
+    padding: 10px;
     background-color: #c7c7c7;
     border: 2px solid #f7f7f7;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     cursor: pointer;
-    perspective: 1000px; /* Define la perspectiva para el efecto 3D */
-    position: relative; /* Agregado para z-index */
+    perspective: 1000px; 
+    position: relative; 
 
-    /* Estilos del contenido dentro de la tarjeta */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,10 +37,9 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-
 .card:hover::before,
 .card:hover::after {
-    background-color: #005B4A; /* Cambia el color del borde superior e inferior al pasar el mouse */
+    background-color: #00235b; 
 }
 
 .card-front,
@@ -79,7 +78,8 @@
     height: 140px; 
     border-radius: 50%;
     object-fit: cover; 
-    margin-bottom:10px;
+    margin-bottom: 10px;
+    margin-top: 20px; 
 }
 
 .card-title {
