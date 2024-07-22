@@ -13,6 +13,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,6 +57,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Collage.wsgi.application'
+
+ASGI_APPLICATION = 'Collage.asgi.application'
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    },
+}
 
 DATABASES = {
     'default': {

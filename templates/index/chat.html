@@ -2,34 +2,50 @@
 {% load static %}
 
 {% block content %}
+
+<style>
+    .chat-box {
+        height: 300px; /* Ajusta la altura según tu diseño */
+        overflow-y: auto; /* Habilita la barra de desplazamiento vertical */
+        border: 1px solid #ddd;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .chat-box .messages {
+        list-style: none;
+        padding: 0;
+    }
+
+    .chat-box .messages li {
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .chat-box img {
+        display: block;
+        margin-top: 10px;
+    }
+</style>
+
 <section id="chat-photo" class="chat-photo">
     <div class="container">
         <div class="row">
-            <!-- Columna para el chat -->
+
             <div class="col-md-6 chat-section">
                 <h2>Chat</h2>
                 <div class="chat-box">
-                    <div class="messages">
-                        <!-- Mensajes de ejemplo -->
-                        <div class="message">
-                            <div class="message-content">
-                                <p><strong>User:</strong> Hola, ¿cómo estás?</p>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="message-content">
-                                <p><strong>Support:</strong> ¡Hola! Estoy bien, ¿en qué puedo ayudarte?</p>
-                            </div>
-                        </div>
-                        <!-- Los mensajes se agregarán aquí dinámicamente -->
+                    <div id="messages" class="messages">
                     </div>
                 </div>
-                <form class="chat-form">
+
+                <form id ="chatForm" class="chat-form">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Escribe tu mensaje aquí..." required>
+                        <input id="messageInput" type="text" class="form-control" placeholder="Escribe tu mensaje aquí..." required>
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
+
             </div>
             
             <!-- Columna para subir o tomar fotos -->
@@ -48,4 +64,7 @@
         </div>
     </div>
 </section>
+
+<script src = {% static 'assets/js/chatSocket.js/' %}> </script>
+
 {% endblock content %}

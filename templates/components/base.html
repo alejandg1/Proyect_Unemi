@@ -44,15 +44,15 @@
           
           
         {% if request.path == '/team/'  %}
-        <li><a href="{% url 'core:team' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
+        <li><a href="{% url 'core:team' %}" class="nav-link scrollto active"><i class="bi bi-microsoft-teams"></i> <span> Team</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:team' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Team</span></a></li>
+        <li><a href="{% url 'core:team' %}" class="nav-link scrollto"><i class="bi bi-microsoft-teams"></i> <span> Team</span></a></li>
         {% endif %}
 
         {% if request.path == '/chat/'  %}
-        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span> Chat</span></a></li>
+        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto active"><i class="bi bi-chat-left-text"></i> <span> Chat</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span> Chat</span></a></li>
+        <li><a href="{% url 'core:chat' %}" class="nav-link scrollto"><i class="bi bi-chat-left-text"></i> <span> Chat</span></a></li>
         {% endif %}
       </ul>
     </nav>
