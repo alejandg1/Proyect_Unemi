@@ -36,7 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
     socket.onmessage = function(e) {
         console.log(e.data);
         const data = JSON.parse(e.data);
-        
+        const input = document.getElementById('messageInput');
+        const button = document.getElementById('sendPrompt')
+
         if (data.type === 'chat_message') {
             const messages = document.getElementById('messages');
             const messageItem = document.createElement('li');
@@ -53,6 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             messages.scrollTop = messages.scrollHeight;
+            input.disabled = false
+            button.disabled = false
         }
     };
 
@@ -65,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const input = document.getElementById('messageInput');
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
+        const button = document.getElementById('sendPrompt')
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const isCanvasEmpty = imageData.data.every(value => value === 0);
 
@@ -92,6 +97,10 @@ document.addEventListener('DOMContentLoaded', function() {
             'img64': canvasDataURL
         }));
         input.value = ''; 
+
+        input.disabled = true
+        button.disabled = true
+
     });
 
 })
