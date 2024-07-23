@@ -4,9 +4,7 @@ from apps.core.forms import LoginForm
 from django.views.generic.base import TemplateView
 
 
-class LoginView(LoginView):
-    form_class = LoginForm
-    next_page = reverse_lazy('core:home')
+class LoginTemplateView(TemplateView):
     template_name = 'index/login.html'
 
 

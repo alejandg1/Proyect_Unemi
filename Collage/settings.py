@@ -13,6 +13,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,6 +58,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Collage.wsgi.application'
 
+ASGI_APPLICATION = 'Collage.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [("redis://default:iEZNlKPiHDpehvEwToBzumoFlPLvQpsH@monorail.proxy.rlwy.net:52114")],  # Reemplaza con tu URL de Redis
+        },
+    },
+}
+
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql",
@@ -90,7 +103,7 @@ USE_TZ = True
 
 AUTH_USER_MODEL = "core.User"
 STATIC_URL = '/static/'
-STATIC_URL = '/static/'  # url de archivos estaticos
+
 # carpeta fisica de archivos estaticos
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 # carpeta fisica de archivos de Imagenes

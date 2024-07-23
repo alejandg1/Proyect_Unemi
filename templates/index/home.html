@@ -1,24 +1,18 @@
 {% extends "components/base.html" %}
 {% load static %}
-{% block content %}
-{% load crispy_forms_tags %}
-<div class="container">
-    <div class="section-title">
-        <h2>{{title}}</h2>
-    <div></div>
-  </div>
-        <h2>Unempic</h2>
-        <p>Tu creatividad, Nuestra IA</p>
-  </div>    
 
-  </div>
-        <form method="POST" enctype="multipart/form-data" class="m-4"> 
-            {% csrf_token %}
-            {{form|crispy}}
-            {% block button %}
-            <button class="btn btn-outline-primary" type="submit">Login</button>
-            {% endblock button %}
-        </form>
-  </div>    
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="title-container">
+        <h1 class="main-title">UnemPic</h1>
+        <p class="subtitle">Tu creatividad, nuestra inteligencia artificial</p>
+    </div>
+    <div class="Unem-ia">
+        <img src="{% static 'assets/img/IA.png' %}" class="card-img-top" alt="Person">
+    </div>
 </div>
-  {% endblock content %}
+{% endblock content %}
