@@ -6,8 +6,13 @@
     <div class="container" data-aos="fade-up">
   
       <div class="section-title">
+      {% if request.user.is_superuser  %}
         <h2>Collage</h2>
+      {% else %}
+        <h2>Imagen Generada</h2>
+      {% endif %}
        </div>
+
     </div>
   </section>
 {% endblock content %}

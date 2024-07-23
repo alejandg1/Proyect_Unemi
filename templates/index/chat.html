@@ -3,59 +3,19 @@
 
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="{% static 'assets/css/chat.css' %}" rel="stylesheet"> 
 
-<style>
-    .chat-box {
-        height: 300px; /* Ajusta la altura según tu diseño */
-        overflow-y: auto; /* Habilita la barra de desplazamiento vertical */
-        border: 1px solid #ddd;
-        padding: 10px;
-        background-color: #f9f9f9;
-    }
 
-    .chat-box .messages {
-        list-style: none;
-        padding: 0;
-    }
-
-    .chat-box .messages li {
-        padding: 8px;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .chat-box img {
-        display: block;
-        margin-top: 10px;
-    }
-    .input-group .btn {
-        border-radius: 0; /* Alinea el botón con el campo de entrada */
-    }
-
-    .bordered {
-        border: 3px solid #007bff; /* Borde azul */
-        border-radius: 10px; /* Bordes redondeados */
-        overflow: hidden; /* Asegura que el contenido no se desborde */
-        display: flex; /* Flexbox para centrar el contenido */
-        justify-content: center; /* Centrar horizontalmente */
-        align-items: center; /* Centrar verticalmente */
-        width: 320px; /* Center */
-        height: 240px; /* Ajusta según sea necesario */
-    }
-    
-    .camera-preview video, .captured-frame canvas {
-        width: 320px;
-        height: 240px;
-        max-height: 100%;
-    }
-    
-</style>
 
 <section id="chat-photo" class="chat-photo">
     <div class="container">
+        <div class="section-title">
+            <h2>Chat IA </h2>
+           </div> 
         <div class="row">
 
             <div class="col-md-6 chat-section">
-                <h2 class="section-title text-primary text-center">Chat</h2>
+                <h2 class="title" >CHAT</h2>
                 <div class="chat-box">
                     <div id="messages" class="messages">
                     </div>
@@ -63,12 +23,11 @@
 
                 <form id="chatForm" class="chat-form">
                     <div class="input-group">
-                        <input id="messageInput" type="text" class="form-control" placeholder="Escribe tu mensaje aquí..." required>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-paper-plane"></i> <!-- Ícono de enviar -->
-                            </button>
-                        </div>
+                        <input id="messageInput" type="text" class="form-control" placeholder="Transforma tu imagen." required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-send-fill"></i> <!-- Ícono de enviar -->
+                        </button>
+                        
                     </div>
                 </form>
 
@@ -76,9 +35,9 @@
             
             <!-- Columna para subir o tomar fotos -->
             <div class="col-md-6 photo-section">
-                <h2 class="section-title text-primary text-center">Cámara web</h2>
+                <h2 class="subtitle">CÁMARA WEB</h2>
                 <div class="photo-options d-flex justify-content-center align-items-center mb-3">
-                    <button class="btn btn-secondary" id="takePhoto">Tomar Foto</button>
+                    <button class="btn btn-secondary" id="takePhoto"> 📷 Tomar Foto</button>
                 </div>
                 <input type="file" id="photoUpload" style="display: none;">
                 <div class="row">
@@ -96,7 +55,8 @@
             </div> 
             
             
-        </div>
+
+        
     </div>
 </section>
 
