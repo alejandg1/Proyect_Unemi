@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('WebSocket error:', e);
     };
 
-    document.getElementById('chatForm').addEventListener('submit', function(event) {
+    document.getElementById('sendPrompt').addEventListener('click', function(event) {
         event.preventDefault();
         const input = document.getElementById('messageInput');
         const canvas = document.getElementById('canvas');
