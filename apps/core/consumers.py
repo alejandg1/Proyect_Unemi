@@ -15,16 +15,14 @@ load_dotenv()
 
 class DallEChat(WebsocketConsumer):
     def connect(self):
-        
         print('Conectandose al websocket...')
         
         self.user_id = self.scope['user'].id
         print("id:", self.user_id)
         self.room_name = f'session_{self.user_id}'
-        
         async_to_sync(self.channel_layer.group_add)(self.room_name, self.channel_name)
-        
         self.accept()
+        
         print("Conexion aceptada para el usuario con ID: ", self.user_id)
 
     def disconnect(self, code):
@@ -48,23 +46,21 @@ class DallEChat(WebsocketConsumer):
                 'datetime': timezone.localtime(timezone.now()).strftime('%Y-%m-%d %H:%M:%S')
             })
             
-            print("Procesando mensaje")
-            
         except json.JSONDecodeError as e:
             print(f"Error al decodificar JSON: {e}")
+            
+        except Exception as e:
+            print(f"Error inesperado: {e}")
 
     def chat_message(self, event):
+        
         message = event['message']
         datetime = event['datetime']
         sender_id = event['sender_id']
         img64 = event['img64']
         current_user_id= self.scope['user'].id
         
-        print("Enviando datos..")
-        print(message)
-        
         response = self.dalle_response(message, img64)
-        
         
         if sender_id == current_user_id:
             
@@ -77,13 +73,10 @@ class DallEChat(WebsocketConsumer):
             
             print("Mensaje enviado")
         
-    
     def dalle_response(self, message, img64):
         try:            
-            print(message)
-            
+                        
             decoded = base64.b64decode(img64) 
-              
             image_io = BytesIO(decoded)
             
             with Image.open(image_io) as img:
@@ -92,11 +85,7 @@ class DallEChat(WebsocketConsumer):
                 img.save(img_io, format='PNG')
                 img_io.seek(0)
                 image_data = img_io.getvalue()    
-                
-                if len(image_data) > 4 * 1024 * 1024:
-                    print('La imagen debe ser menor a 4 MB.')   
-                    
-
+                     
             response = requests.post(
             "https://api.deepai.org/api/image-editor",
             files=
@@ -106,34 +95,37 @@ class DallEChat(WebsocketConsumer):
                 
             },
             
-            headers={'api-key': '7bcc3b74-8c5e-4df7-920b-819808d2b905'}
+            headers={'api-key': '813cf899-d542-4f56-b4a0-2a17eeb88c57'}
             
             )
+            
             if response.status_code != 200:
-                print("Error")
-                print(response.text)
+                print("Error al consultar con la API de DeepAI: ", response.text)
+                return None
             
-            # print(response.json())
-
-            # Se guarda la imagén que envia el usuario por el momento
+            response = response.json()
+            output_url = response['output_url']
+            deep_image = requests.get(output_url)
             
+            if deep_image.status_code != 200:
+                print("Error al recibir la imagén generada: ", deep_image.text)
+                return None
+            
+            with Image.open(BytesIO(deep_image.content)) as new_img:
+                new_img_io = BytesIO()
+                new_img.save(new_img_io, format='PNG')
+                new_img_io.seek(0)
+                new_image_data = new_img_io.getvalue() 
+   
             filename = 'image_{}.png'.format(str(uuid.uuid4()))
-            
             image_model = GeneratedImage()
-                
-            image_model.Img.save(name=filename, content=ContentFile(image_data, name=filename))   
-            
-            image_model.Type = image_data
-            
+            image_model.Img.save(name=filename, content=ContentFile(new_image_data, name=filename))   
+            image_model.Type = new_image_data
             image_model.save()
-            
             img_url = image_model.Img.url
-            
-            print("Imagen guardada")
             
             return img_url
             
         except Exception as e:
-            print(f"Error al generar la imagen: {e}")
+            print(f"Error al generar/guardar la imagen: {e}")
             return None
-            

@@ -1,5 +1,6 @@
 function closeModal(id) {
     container = document.getElementById(`info-${id}`)
+    container.innerText = ""
     container.style.display = "none"
     
 
@@ -98,15 +99,34 @@ async function openModal(id) {
             buttonLess.onclick = null
             var button = buttonLess.querySelector('button');
             button.textContent = "No hay datos disponibles";
-
             return
         }
 
         buttonLess = document.getElementById(`buttonLess-${id}`)
         buttonLess.style.display = 'block'
-        
+
+        infoDivs = document.querySelectorAll('div.teacher-info')
+
+        infoDivs.forEach(element => {
+            element.style.display = "none"
+        })
+
         container.appendChild(dataItem);
         container.style.display = "block"
+
+        showDivs = document.querySelectorAll('.show')
+        showDivs.forEach(element => {
+
+            if (element.id !== buttonShow.id){
+            element.style.display = "block"
+            }
+            
+        })
+
+        lessDivs = document.querySelectorAll('.less')
+        lessDivs.forEach(element => {
+                element.style.display = "none"
+        })
 
     } catch (error) {
       console.error('ERROR:', error)
