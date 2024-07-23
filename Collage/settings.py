@@ -60,11 +60,12 @@ WSGI_APPLICATION = 'Collage.wsgi.application'
 
 ASGI_APPLICATION = 'Collage.asgi.application'
 
-SESSION_ENGINE = "django.contrib.sessions.backends.db"
-
 CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [("redis://default:iEZNlKPiHDpehvEwToBzumoFlPLvQpsH@monorail.proxy.rlwy.net:52114")],  # Reemplaza con tu URL de Redis
+        },
     },
 }
 

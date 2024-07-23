@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isCanvasEmpty) {
             const messages = document.getElementById('messages');
             const messageItem = document.createElement('li');
-            messageItem.innerHTML = `<p><strong>No puedes enviar mensajes sin contenido en el lienzo!</strong></p>`;
+            messageItem.innerHTML = `<p><strong>No puedes enviar mensajes sin haber tomado una foto!</strong></p>`;
             messages.appendChild(messageItem);
             return
         }
