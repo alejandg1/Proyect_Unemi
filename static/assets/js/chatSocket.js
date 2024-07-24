@@ -40,23 +40,31 @@ document.addEventListener('DOMContentLoaded', function() {
         const button = document.getElementById('sendPrompt')
 
         if (data.type === 'chat_message') {
-            const messages = document.getElementById('messages');
-            const messageItem = document.createElement('li');
-            messageItem.innerHTML = `<p></strong> ${data.message}</p><p><small>${data.datetime}</small></p>`;
-            messages.appendChild(messageItem);
-            
-            if (data.img) {
+
+            if (!data.success) {
+                const messages = document.getElementById('messages');
+                const messageItem = document.createElement('li');
+                messageItem.innerHTML = `<p><strong>Ocurrió un error al momento hacer la petición, intentalo nuevamente</strong></p>`;
+                messages.appendChild(messageItem);
+                messages.scrollTop = messages.scrollHeight;
+                input.disabled = false
+                button.disabled = false
+                return
+            }
+                const messages = document.getElementById('messages');
+                const messageItem = document.createElement('li');
+                messageItem.innerHTML = `<p></strong> ${data.message}</p><p><small>${data.datetime}</small></p>`;
+                messages.appendChild(messageItem);
                 const imageUrl = data.img
                 const imageItem = document.createElement('img');
                 imageItem.src = imageUrl;
                 imageItem.alt = 'Imagen generada';
                 imageItem.style.maxWidth = '200px';
                 messages.appendChild(imageItem);
-            }
+                messages.scrollTop = messages.scrollHeight;
+                input.disabled = false
+                button.disabled = false
 
-            messages.scrollTop = messages.scrollHeight;
-            input.disabled = false
-            button.disabled = false
         }
     };
 

@@ -1,3 +1,4 @@
+from typing import Any
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -19,8 +20,15 @@ class User(AbstractUser):
         return "Usuario: {}".format(self.username)
 
 class GeneratedImage(models.Model):
+    user = models.ForeignKey(User, on_delete= models.CASCADE)
     Img = models.ImageField(upload_to='generated/')
-    Type = models.BinaryField()
+    
+    def delete(self, *args, **kwargs):
+        
+        if self.Img:
+            self.Img.delete(save=False)
+            
+        super(GeneratedImage, self).delete(*args, **kwargs)
     
 class Teacher(models.Model):
     name = models.CharField(max_length=100)
@@ -43,6 +51,7 @@ class Teacher(models.Model):
 class Articles(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete= models.CASCADE)
     article_name = models.CharField(max_length=100, null = False)
+    url = models.URLField(default= '#', null = True, blank = True)
     
     def __str__(self):
         return '{} - {}'.format(self.teacher.name, self.article_name)
@@ -57,6 +66,7 @@ class Articles(models.Model):
 class Projects(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete= models.CASCADE)
     project_name = models.CharField(max_length=100, null = False)
+    url = models.URLField(default= None, null = True, blank = True)
     
     def __str__(self):
         return '{} - {}'.format(self.teacher.name, self.project_name)
@@ -71,6 +81,7 @@ class Projects(models.Model):
 class Research(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     research_name = models.CharField(max_length=100, null = False)
+    url = models.URLField(default= None, null = True, blank = True)
     
     def __str__(self):
         return '{} - {}'.format(self.teacher.name, self.research_name)
