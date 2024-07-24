@@ -22,8 +22,15 @@ class User(AbstractUser):
 class GeneratedImage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     Img = models.ImageField(upload_to='generated/')
-    Type = models.BinaryField()
-    
+
+    def delete(self, *args, **kwargs):
+
+        if self.Img:
+            self.Img.delete(save=False)
+
+        super(GeneratedImage, self).delete(*args, **kwargs)
+
+
 class Teacher(models.Model):
     name = models.CharField(max_length=100)
     img = models.ImageField(upload_to='images/')

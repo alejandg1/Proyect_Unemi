@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
 
-    const socket = new WebSocket('wss://' + window.location.host + '/dallechat/');
+    const socket = new WebSocket('ws://' + window.location.host + '/dallechat/');
 
     console.log(socket)
 
