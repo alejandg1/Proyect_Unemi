@@ -60,24 +60,47 @@
 }
 
 .chat-section .messages {
-    list-style: none; /* Eliminar puntos de lista */
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .chat-section .messages li {
-    padding: 10px; 
+    text-align: right;
+    padding: 20px; 
+    margin: 5px;
     border-radius: 20px;
     background-color: #e7e4e4;
-  
 }
 
 .chat-section .messages li:last-child {
+    padding: 20px; 
+    margin: 5px;
     border-bottom: none;
 }
+
 .chat-section .messages li:hover {
     background-color: #b9b4b4; 
 }
+
+.chat-section .messages li.response-message {
+    text-align: left;
+    background-color: #9fe0ae;
+    margin: 5px;
+    padding: 20px; 
+    border-radius: 20px;
+}
+
+.chat-section .messages li.response-message:last-child {
+    padding: 20px; 
+    margin: 5px;
+    border-bottom: none;
+}
+
+.chat-section .messages li.response-message:hover {
+    background-color: #71e08b;; 
+}
+
 
 .chat-section img {
     display: block;
