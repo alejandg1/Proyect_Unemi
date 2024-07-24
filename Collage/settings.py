@@ -64,7 +64,6 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            # Reemplaza con tu URL de Redis
             "hosts": [("redis://default:iEZNlKPiHDpehvEwToBzumoFlPLvQpsH@monorail.proxy.rlwy.net:52114")],
         },
     },
