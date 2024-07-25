@@ -13,8 +13,6 @@ urlpatterns = [
     path('about/', about.AboutTemplateView.as_view(), name="about"),
     path('login/', logs.LoginTemplateView.as_view(), name="login"),
     path('data_response/', about.TeacherDataResponse.as_view(), name="response"),
-    path('data_response/', about.TeacherDataResponse.as_view(),
-         name="response"),
     path('team/', team.TeamTemplateView.as_view(), name="team"),
     path('chat/', chat.ChatTemplateView.as_view(), name="chat"),
     path('withoutpermissions/', logs.NoPermissions.as_view(),
