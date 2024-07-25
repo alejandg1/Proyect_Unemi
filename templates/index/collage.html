@@ -6,23 +6,24 @@
 {% block content %}
 <div class="container" data-aos="fade-up">
   <div>
-    {% comment %}
-      
-  {% if request.user.is_superuser  %}
-    {% endcomment %}
     <h1>Collage</h1>
-    <canvas id="canvas"><canvas/>
-        {% comment %}
-  {% else %}
-    <h1>Imagen Generada</h1>
-  {% endif %}
-          
-        {% endcomment %}
+    <div>
+      {% if collages %}
+        <div class="collage-container">
+          {% for collage in collages %}
+              <img src="{{ collage }}" alt="collage" class="collage">
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>No hay collages</p>
+      
+      {% endif %}
+    </div>
   </div>
 
   <div class="button-container">
-    <button id="createCollage" onclick="collage()" class="btn btn-primary">Crear Collage</button>
     <a id="logout" href="{% url 'core:logout' %}" class="btn btn-primary">Cerrar sesión</a>
+    <a id="createCollage" href="{% url 'core:mkcol' %}" class="btn btn-primary">Crear Collage</a>
     <a id="clear" href="{% url 'core:clear' %}" class="btn btn-danger">Borrar Datos</a>
   </div>
 

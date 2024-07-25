@@ -3,9 +3,7 @@
 __pycache__/
 __pycache__
 Unemi/
-
 media
-
 # Django #
 *.log
 *.pot
