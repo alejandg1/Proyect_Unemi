@@ -12,7 +12,6 @@ urlpatterns = [
     path('profile/', profile.ProfileTemplateView.as_view(), name="profile"),
     path('about/', about.AboutTemplateView.as_view(), name="about"),
     path('login/', logs.LoginTemplateView.as_view(), name="login"),
-    path('logout/', logs.Logout, name="logout"),
     path('data_response/', about.TeacherDataResponse.as_view(), name="response"),
     path('data_response/', about.TeacherDataResponse.as_view(),
          name="response"),
