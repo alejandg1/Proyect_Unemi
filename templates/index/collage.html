@@ -6,17 +6,26 @@
 {% block content %}
 <div class="container" data-aos="fade-up">
   <div>
+    {% comment %}
+      
   {% if request.user.is_superuser  %}
+    {% endcomment %}
     <h1>Collage</h1>
+    <canvas id="canvas"><canvas/>
+        {% comment %}
   {% else %}
     <h1>Imagen Generada</h1>
   {% endif %}
+          
+        {% endcomment %}
   </div>
 
   <div class="button-container">
-    <button id="createCollage" class="btn btn-primary">Crear Collage</button>
-    <button id="clearData" class="btn btn-danger">Borrar Datos</button>
+    <button id="createCollage" onclick="collage()" class="btn btn-primary">Crear Collage</button>
+    <a id="logout" href="{% url 'core:logout' %}" class="btn btn-primary">Cerrar sesión</a>
+    <a id="clear" href="{% url 'core:clear' %}" class="btn btn-danger">Borrar Datos</a>
   </div>
 
 </div>
+  <script src="{% static 'assets/js/collage.js' %}"></script>
 {% endblock content %}
