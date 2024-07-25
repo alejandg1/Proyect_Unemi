@@ -32,8 +32,6 @@
 
 <body>
   <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
-  <input type="hidden" id="user" value="{{ request.user.id }}" />
-  <input type="hidden" id="token" value="{{ csrf_token }}" />
   <header id="header" class="d-flex flex-column justify-content-center">
     <nav id="navbar" class="navbar nav-menu">
       <ul>
@@ -96,6 +94,5 @@
   <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
 
   <script src="{% static 'assets/js/main.js' %}"></script>
-  <script src="{% static 'assets/js/logout.js' %}"></script>
 </body>
 </html>
