@@ -1,19 +1,22 @@
 {% extends "components/base.html" %}
 {% load static %}
-
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/collage.css' %}">
+{% endblock extra_css %}
 {% block content %}
-<section id="modules" class="services">
-    <div class="container" data-aos="fade-up">
-  
-      <div class="section-title">
-      {% if request.user.is_superuser  %}
-        <h2>Collage</h2>
-      {% else %}
-        <h2>Imagen Generada</h2>
-      {% endif %}
-       </div>
+<div class="container" data-aos="fade-up">
+  <div>
+  {% if request.user.is_superuser  %}
+    <h1>Collage</h1>
+  {% else %}
+    <h1>Imagen Generada</h1>
+  {% endif %}
+  </div>
 
-    </div>
-  </section>
+  <div class="button-container">
+    <button id="createCollage" class="btn btn-primary">Crear Collage</button>
+    <button id="clearData" class="btn btn-danger">Borrar Datos</button>
+  </div>
+
+</div>
 {% endblock content %}
-
