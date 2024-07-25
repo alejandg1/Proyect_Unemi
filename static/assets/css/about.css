@@ -1,8 +1,12 @@
-/* Estilos generales para la sección de perfiles */
-
-.about {
-    padding: 80px 0;
-  }
+h1{
+  text-align: center;
+  color: rgb(54, 3, 3);
+  font-weight: bold;
+  margin-top: 13px; 
+}
+.container {
+  margin-top: 10px;
+}
   
   .section-title {
     text-align: center;

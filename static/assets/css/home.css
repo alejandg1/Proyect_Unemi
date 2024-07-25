@@ -5,8 +5,8 @@
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
-    width: 900px;
-    height: 600px;
+    width: 1000px;
+    height: 500px;
 }
 
 .title-container {
@@ -33,8 +33,11 @@
 }
 
 .Unem-ia img {
-    max-width: 80%;
+    max-width: 100%;
+    width: 400px;
+    height: auto;
 }
+
 
 @media (max-width: 850px) {
     .content-wrapper {
