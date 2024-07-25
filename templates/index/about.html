@@ -2,65 +2,61 @@
 {% load static %}
 {% block content %}
 
-<section id="about" class="about section-padding bg-light">
-  <div class="container" data-aos="fade-up">
-    <div class="row">
-      <div class="section-title">
-        <h2>Descubre nuestro perfiles</h2>
-       </div> 
-        <div class="row">
-          
-          <!-- Agrega cuadros de perfil aquí -->
+<div class="container" data-aos="fade-up">
+  <h1>Descubre nuestro perfiles</h1>
+  <div class="row">
+      <div class="row">
+        
+        <!-- Agrega cuadros de perfil aquí -->
 
-          
-          {% for teacher in teachers %}
+        
+        {% for teacher in teachers %}
 
-          <div class="col-md-4 mb-4">
-            <div class="profile-card text-center">
-              <img src="{{teacher.img.url}}" class="img-fluid rounded-circle" alt="Teacher">
-              <h2 class="mt-3" style="font-weight: bold">{{teacher.name}}</h2>
+        <div class="col-md-4 mb-4">
+          <div class="profile-card text-center">
+            <img src="{{teacher.img.url}}" class="img-fluid rounded-circle" alt="Teacher">
+            <h2 class="mt-3" style="font-weight: bold">{{teacher.name}}</h2>
 
-              
-              {% if teacher.biography  %}
-              <p>{{teacher.biography}}</p>
-              {% else %}
-              <p>Biografía no disponible</p>
-              {% endif %}
-                
-              {% if teacher.cv %}
-              <a href="{{ teacher.cv.url }}" download><i class="bi bi-file-earmark-person"></i>Hoja de vida</a>
-              {% else %}
-              <span>Hoja de vida no disponible</span>
-              {% endif %}
-
-              <div id="buttonShow-{{teacher.id}}" class="show info-box mt-3" onclick='openModal({{teacher.id}})' style="display: block;">
-                <button class="btn btn-info">Más información</button>
-              </div>
-
-              <div id="buttonLess-{{teacher.id}}" class="less info-box mt-3" onclick='closeModal({{teacher.id}})' style="display: none;">
-                <button class="btn btn-info">Menos información</button>
-              </div>
-
-              <div id="info-{{ teacher.id }}" class="teacher-info" style="display: none;">
-              </div>
-
-              
-            </div>
-          </div>
-
-          {% empty %}
-
-          <div class="col-md-12 text-center">
-            <h3>No hay perfiles disponibles</h3>
-          </div>
-          
-          {% endfor %}
             
+            {% if teacher.biography  %}
+            <p>{{teacher.biography}}</p>
+            {% else %}
+            <p>Biografía no disponible</p>
+            {% endif %}
+              
+            {% if teacher.cv %}
+            <a href="{{ teacher.cv.url }}" download><i class="bi bi-file-earmark-person"></i>Hoja de vida</a>
+            {% else %}
+            <span>Hoja de vida no disponible</span>
+            {% endif %}
+
+            <div id="buttonShow-{{teacher.id}}" class="show info-box mt-3" onclick='openModal({{teacher.id}})' style="display: block;">
+              <button class="btn btn-info">Más información</button>
+            </div>
+
+            <div id="buttonLess-{{teacher.id}}" class="less info-box mt-3" onclick='closeModal({{teacher.id}})' style="display: none;">
+              <button class="btn btn-info">Menos información</button>
+            </div>
+
+            <div id="info-{{ teacher.id }}" class="teacher-info" style="display: none;">
+            </div>
+
+            
+          </div>
         </div>
+
+        {% empty %}
+
+        <div class="col-md-12 text-center">
+          <h3>No hay perfiles disponibles</h3>
+        </div>
+        
+        {% endfor %}
+          
       </div>
     </div>
   </div>
+</div>
 
 <script src = {% static 'assets/js/modals.js' %}> </script>
-</section>
 {% endblock content %}
