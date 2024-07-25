@@ -28,7 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     socket.onclose = function(e) {
-        console.log('Se cerró la conexión con el WebSocket');
+        const input = document.getElementById('messageInput');
+        const button = document.getElementById('sendPrompt')
+        const messages = document.getElementById('messages');
+        const messageItem = document.createElement('li');
+        messageItem.className = 'response-message'
+        messageItem.innerHTML = `<p><strong>Se cerró la conexión con el servidor, por favor recarga la página</strong></p>`;
+        messages.appendChild(messageItem);
+        messages.scrollTop = messages.scrollHeight;
+        input.disabled = true
+        button.disabled = true
     };
 
     socket.onmessage = function(e) {
