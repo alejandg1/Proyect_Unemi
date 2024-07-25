@@ -18,17 +18,18 @@ class DallEChat(WebsocketConsumer):
         print('Conectandose al websocket...')
         
         self.user_id = self.scope['user'].id
-        print("id:", self.user_id)
         self.room_name = f'session_{self.user_id}'
+        print('Asignando conexión en la sala: {}'.format(self.room_name))
+        
         async_to_sync(self.channel_layer.group_add)(self.room_name, self.channel_name)
         self.accept()
         
-        print("Conexion aceptada para el usuario con ID: ", self.user_id)
+        print("Conexion aceptada para el usuario con ID {} en la sala: {} ".format(self.user_id, self.room_name))
 
     def disconnect(self, code):
         
         async_to_sync(self.channel_layer.group_discard)(self.room_name, self.channel_name)
-        print('Conexión finalizada')
+        print(f'Conexión finalizada para el usuario con ID {self.user_id}')
         return super().disconnect(code)
 
     def receive(self, text_data):
