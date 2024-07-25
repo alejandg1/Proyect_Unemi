@@ -1,3 +1,4 @@
+from typing import Any
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -50,6 +51,13 @@ class Teacher(models.Model):
             'bio': self.biography,
             'cv': self.cv.url if self.cv else None
         }
+        
+    def delete(self, *args, **kwargs):
+
+        if self.img:
+            self.img.delete(save=False)
+
+        super(Teacher, self).delete(*args, **kwargs)
 
 
 class Articles(models.Model):
@@ -98,3 +106,19 @@ class Research(models.Model):
             'teacher_id': self.teacher.id,
             'research_name': self.research_name
         }
+        
+class Team(models.Model):
+    name = models.CharField(max_length=100, blank=False, null= False)
+    img = models.ImageField(upload_to='team/')
+    description = models.TextField(null= True)
+    
+    def delete(self, *args, **kwargs):
+
+        if self.img:
+            self.img.delete(save=False)
+
+        super(Team, self).delete(*args, **kwargs)
+        
+    def __str__(self):
+        return self.name
+    
