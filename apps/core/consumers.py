@@ -6,7 +6,7 @@ from django.utils import timezone
 from dotenv import load_dotenv
 from io import BytesIO
 from django.core.files.base import ContentFile
-from apps.core.models import GeneratedImage
+from apps.core.models import GeneratedImage, User
 import uuid
 import requests
 from PIL import Image
@@ -60,12 +60,13 @@ class DallEChat(WebsocketConsumer):
         img64 = event['img64']
         current_user_id= self.scope['user'].id
         
-        response = self.dalle_response(message, img64)
+        response, condition = self.dalle_response(message, img64, int(sender_id))
         
         if sender_id == current_user_id:
             
             self.send(text_data=json.dumps({
                 'type': 'chat_message',
+                'success': condition,
                 'message': message,
                 'img': response,
                 'datetime': datetime
@@ -73,9 +74,11 @@ class DallEChat(WebsocketConsumer):
             
             print("Mensaje enviado")
         
-    def dalle_response(self, message, img64):
+    def dalle_response(self, message, img64, id):
         try:            
-                        
+        
+            user = User.objects.get(id=id)
+                
             decoded = base64.b64decode(img64) 
             image_io = BytesIO(decoded)
             
@@ -101,7 +104,7 @@ class DallEChat(WebsocketConsumer):
             
             if response.status_code != 200:
                 print("Error al consultar con la API de DeepAI: ", response.text)
-                return None
+                return None, False
             
             response = response.json()
             output_url = response['output_url']
@@ -109,7 +112,7 @@ class DallEChat(WebsocketConsumer):
             
             if deep_image.status_code != 200:
                 print("Error al recibir la imagén generada: ", deep_image.text)
-                return None
+                return None, False
             
             with Image.open(BytesIO(deep_image.content)) as new_img:
                 new_img_io = BytesIO()
@@ -119,13 +122,13 @@ class DallEChat(WebsocketConsumer):
    
             filename = 'image_{}.png'.format(str(uuid.uuid4()))
             image_model = GeneratedImage()
-            image_model.Img.save(name=filename, content=ContentFile(new_image_data, name=filename))   
-            image_model.Type = new_image_data
+            image_model.user = user
+            image_model.Img.save(name=filename, content=ContentFile(new_image_data, name=filename)) 
             image_model.save()
             img_url = image_model.Img.url
             
-            return img_url
+            return img_url, True
             
         except Exception as e:
             print(f"Error al generar/guardar la imagen: {e}")
-            return None
+            return None, False

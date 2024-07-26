@@ -37,9 +37,9 @@
     <nav id="navbar" class="navbar nav-menu">
       <ul>
         {% if request.path == '/' %}
-        <li><a href="{% url 'core:home' %}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span> Home</span></a></li>
+        <li><a href="{% url 'core:home' %}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Inicio</span></a></li>
         {% else %}
-        <li><a href="{% url 'core:home' %}" class="nav-link scrollto"><i class="bx bx-home"></i> <span> Home</span></a></li>
+        <li><a href="{% url 'core:home' %}" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Inicio</span></a></li>
         {% endif %}
 
         {% if request.path == '/about/'  %}
