@@ -1,5 +1,4 @@
 from django.views.generic import TemplateView
-from django.db.models import Q
 from django.shortcuts import render as Render
 import os
 from django.conf import settings
@@ -21,16 +20,11 @@ class CollageTemplateView(TemplateView):
 def separar_imagenes(images):
     try:
         grupos = []
-        max = 14
-        used = 0
-        for i in images:
+        max = 13
+        for i in range(0, len(images), max):
             grupo = []
-            if used <= len(images):
-                if max > len(images):
-                    max = len(images)
-                for j in range(used, max):
-                    grupo.append(images[j].Img.url)
-                    used += 1
+            for j in range(i, min(i + max, len(images))):
+                grupo.append(images[j].Img.url)
             grupos.append(grupo)
         return grupos
     except Exception as e:
@@ -43,7 +37,7 @@ def collage_pill(group_img):
         WT, HG = 305, 240
         rows, cols = 3, 5
         margin = 5
-        UnemiIMG = Image.open(os.path.join(settings.MEDIA_ROOT, 'unemi.png'))
+        UnemiIMG = Image.open(os.path.join(settings.MEDIA_ROOT, 'unemi.jpeg'))
         UnemiIMG = UnemiIMG.resize((320, 240))
         countFiles = os.listdir(os.path.join(
             settings.MEDIA_ROOT, 'collages'))
@@ -54,7 +48,6 @@ def collage_pill(group_img):
 
         positions = [(x * WT+margin, y * HG+margin)
                      for y in range(rows) for x in range(cols)]
-        print(positions)
         for img in group_img:
             url = f'{settings.BASE_DIR}{img}'
             images.append(Image.open(url).resize((WT, HG)))
@@ -95,8 +88,9 @@ def MakeCollage(request):
         for group in grupos:
             if len(group) > 0:
                 name = collage_pill(group)
-                collages.append(f'{settings.MEDIA_URL}collages/{name}')
-                names.append(name)
+                if name is not None:
+                    collages.append(f'{settings.MEDIA_URL}collages/{name}')
+                    names.append(name)
 
                 for user in superusers:
                     GeneratedImage.objects.create(
