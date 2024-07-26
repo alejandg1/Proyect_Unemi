@@ -14,6 +14,7 @@ urlpatterns = [
     path('login/', logs.LoginTemplateView.as_view(), name="login"),
     path('logout/', logs.Logout, name="logout"),
     path('clear/', logs.DelTemps, name="clear"),
+    path('clearImg/', collage.Delete_collages, name="clearImg"),
     path('mkcol/', collage.MakeCollage, name="mkcol"),
     path('data_response/', about.TeacherDataResponse.as_view(),
          name="response"),

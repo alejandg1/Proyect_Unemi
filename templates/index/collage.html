@@ -8,10 +8,11 @@
   <div>
     <h1>Collage</h1>
     <div>
+
       {% if collages %}
         <div class="collage-container">
           {% for collage in collages %}
-              <img src="{{ collage }}" alt="collage" class="collage">
+          <img width="320" heigth="240" src="{{collage}}" alt="collage" class="collage">
           {% endfor %}
         </div>
       {% else %}
@@ -23,10 +24,10 @@
 
   <div class="button-container">
     <a id="logout" href="{% url 'core:logout' %}" class="btn btn-primary">Cerrar sesión</a>
+    <a id="clearImg" href="{% url 'core:clearImg' %}" class="btn btn-primary">Borrar collages</a>
     <a id="createCollage" href="{% url 'core:mkcol' %}" class="btn btn-primary">Crear Collage</a>
     <a id="clear" href="{% url 'core:clear' %}" class="btn btn-danger">Borrar Datos</a>
   </div>
 
 </div>
-  <script src="{% static 'assets/js/collage.js' %}"></script>
 {% endblock content %}
