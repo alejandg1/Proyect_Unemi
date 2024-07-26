@@ -102,12 +102,11 @@ def MakeCollage(request):
 
 def Delete_collages(request):
     try:
-        images = GeneratedImage.objects.filter(Img__contains='collage')
+        images = GeneratedImage.objects.filter(Img__icontains='collage')
         for img in images:
             if os.path.exists(f'{settings.MEDIA_ROOT}{img.Img}'):
                 os.remove(f'{settings.MEDIA_ROOT}{img.Img}')
             img.delete()
-        return redirect('core:collage')
     except Exception as e:
         print("delete=>", e)
-        return redirect('core:collage')
+    return redirect('core:collage')
