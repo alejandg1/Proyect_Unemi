@@ -1,5 +1,4 @@
 from django.views.generic import TemplateView
-from pathlib import Path
 from django.shortcuts import render as Render
 import os
 from django.conf import settings
@@ -21,7 +20,7 @@ class CollageTemplateView(TemplateView):
 def separar_imagenes(images):
     try:
         grupos = []
-        max = 10
+        max = 14
         used = 0
         for i in images:
             grupo = []
@@ -38,37 +37,63 @@ def separar_imagenes(images):
 
 
 def collage_pill(group_img):
-    images = []
-    UnemiIMG = Image.open(os.path.join(settings.MEDIA_ROOT, 'unemi.png'))
-    for img in group_img:
-        url = f'{settings.BASE_DIR}{img}'
-        images.append(Image.open(url))
-    countFiles = os.listdir(os.path.join(settings.MEDIA_ROOT, 'collages'))
-    collageURL = os.path.join(
-        settings.MEDIA_ROOT, 'collages', f'collage{len(countFiles)+1}.png')
-    collage_W = max([img.width for img in images])*4
-    collage_H = sum([img.height for img in images])*3
-    collage = Image.new('RGB', (collage_W, collage_H))
-    centralPosition = (collage_W//4, collage_H//3)
-    collage.paste(UnemiIMG, centralPosition)
-    positions = [(x*collage_W//4, y*collage_H//3)
-                 for x in range(4) for y in range(3)]
-    for img, pos in zip(images, positions):
-        collage.paste(img, pos)
-    collage.save(collageURL)
-    return collageURL
+    try:
+        images = []
+        WT, HG = 250, 240
+        rows, cols = 3, 5
+        UnemiIMG = Image.open(os.path.join(settings.MEDIA_ROOT, 'unemi.png'))
+        UnemiIMG = UnemiIMG.resize((WT, HG))
+        countFiles = os.listdir(os.path.join(
+            settings.MEDIA_ROOT, 'collages'))
+        collageURL = os.path.join(settings.MEDIA_ROOT,
+                                  'collages', f'collage{
+                                      len(countFiles)+1}.png')
+
+        positions = [(x * WT, y * HG)
+                     for y in range(rows) for x in range(cols)]
+        for img in group_img:
+            url = f'{settings.BASE_DIR}{img}'
+            images.append(Image.open(url).resize((WT, HG)))
+        collage_W = 320 * cols
+        collage_H = 240 * rows
+        collage = Image.new('RGB', (collage_W, collage_H), (255, 255, 255))
+        if len(images) < 7:
+            next = ()
+            for img, pos in zip(images, positions):
+                collage.paste(img, pos)
+                next = positions.index(pos)
+            print(next+1)
+            collage.paste(UnemiIMG, positions[next+1])
+        else:
+            for img, pos in zip(images, positions):
+                if pos == (640, 240):
+                    collage.paste(UnemiIMG, pos)
+                else:
+                    collage.paste(img, pos)
+
+        collage.save(collageURL)
+        return collageURL
+
+    except Exception as e:
+        print("pill=>", e)
+        return None
 
 
 def MakeCollage(request):
-    users = User.objects.filter(is_temp=True)
-    images = GeneratedImage.objects.filter(user__in=users)
-    grupos = []
-    grupos = separar_imagenes(images)
-    superusers = User.objects.filter(is_superuser=True)
-    collages = []
-    for group in grupos:
-        NewCollage = collage_pill(group)
-        collages.append(NewCollage)
-        for user in superusers:
-            GeneratedImage.objects.create(user=user, Img=NewCollage)
-    return Render(request, 'index/collage.html', {'collages': collages})
+    try:
+        users = User.objects.filter(is_temp=True)
+        images = GeneratedImage.objects.filter(user__in=users)
+        grupos = []
+        grupos = separar_imagenes(images)
+        superusers = User.objects.filter(is_superuser=True)
+        collages = []
+        for group in grupos:
+            if len(group) > 0:
+                NewCollage = collage_pill(group)
+                collages.append(NewCollage)
+            for user in superusers:
+                GeneratedImage.objects.create(user=user, Img=NewCollage)
+        return Render(request, 'index/collage.html', {'collages': collages})
+    except Exception as e:
+        print("mkcol=>", e)
+        return Render(request, 'index/collage.html', {'collages': []})
