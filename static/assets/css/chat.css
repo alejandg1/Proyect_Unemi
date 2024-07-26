@@ -1,8 +1,8 @@
-
-
-.chat-photo {
-    padding: 50px 0;
-    background-color: #f8f9fa;
+h1 {
+    text-align: center;
+    color: rgb(54, 3, 3);
+    font-weight: bold;
+    margin-bottom: 25px;
 }
 
 .container {
@@ -12,37 +12,39 @@
 }
 
 .title {
-    text-align:   center; 
-    font-family: Arial Black; 
-    font-weight: bold; font-size: 30px; 
-    background: #202020; 
-    -webkit-background-clip: text; 
-    -moz-background-clip: text; 
-    background-clip: text; 
-    color: transparent; 
+    text-align: center;
+    font-family: Arial Black;
+    font-weight: bold;
+    font-size: 30px;
+    background: #202020;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
     text-shadow: 0px 3px 3px rgba(255,255,255,0.4),0px -1px 1px rgba(0,0,0,0.3);
-    }
-
-.subtitle{
-    text-align:   center; 
-    font-family: Arial Black; 
-    font-weight: bold; font-size: 30px; 
-    background: #202020; 
-    -webkit-background-clip: text; 
-    -moz-background-clip: text; 
-    background-clip: text; 
-    color: transparent; 
-    text-shadow: 0px 3px 3px rgba(255,255,255,0.4),0px -1px 1px rgba(0,0,0,0.3)
 }
-.chat-section{
+
+.subtitle {
+    text-align: center;
+    font-family: Arial Black;
+    font-weight: bold;
+    font-size: 30px;
+    background: #202020;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0px 3px 3px rgba(255,255,255,0.4),0px -1px 1px rgba(0,0,0,0.3);
+}
+
+.chat-section {
     background-color: #e4e4e4;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-
 }
+
 .photo-section {
-   
     background-color: #eceaea;
     padding: 30px;
     border-radius: 10px;
@@ -50,7 +52,8 @@
 }
 
 .chat-section .chat-box {
-    height: 400px;
+    width: 100%;
+    height: 300px;
     overflow-y: auto;
     border: 5px solid #bbb5b5;
     padding: 15px;
@@ -65,42 +68,41 @@
     margin: 0;
 }
 
-.chat-section .messages li {
-    text-align: right;
-    padding: 20px; 
-    margin: 5px;
+.chat-section .messages li,
+.chat-section .messages li.response-message {
+    display: inline-block;
+    max-width: 80%;
+    padding: 10px 15px;
+    margin: 5px 0;
     border-radius: 20px;
+    word-wrap: break-word;
+}
+
+.chat-section .messages li {
+    float: right;
+    clear: both;
     background-color: #e7e4e4;
 }
 
-.chat-section .messages li:last-child {
-    padding: 20px; 
-    margin: 5px;
-    border-bottom: none;
+.chat-section .messages li.response-message {
+    float: left;
+    clear: both;
+    background-color: #9fe0ae;
+}
+
+.chat-section .messages::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .chat-section .messages li:hover {
-    background-color: #b9b4b4; 
-}
-
-.chat-section .messages li.response-message {
-    text-align: left;
-    background-color: #9fe0ae;
-    margin: 5px;
-    padding: 20px; 
-    border-radius: 20px;
-}
-
-.chat-section .messages li.response-message:last-child {
-    padding: 20px; 
-    margin: 5px;
-    border-bottom: none;
+    background-color: #b9b4b4;
 }
 
 .chat-section .messages li.response-message:hover {
-    background-color: #71e08b;; 
+    background-color: #71e08b;
 }
-
 
 .chat-section img {
     display: block;
@@ -112,10 +114,12 @@
 .chat-section .chat-form {
     margin-top: 20px;
 }
+
 .chat-form .input-group {
     position: relative;
     width: 100%;
 }
+
 .chat-form .form-control {
     border-radius: 300px;
     border-color: #e6dfdf;
@@ -124,8 +128,6 @@
     height: auto;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
-
 
 .chat-section .form-control {
     border-radius: 20px;
@@ -147,7 +149,7 @@
 
 .photo-section .btn-secondary {
     border-radius: 20px;
-    background-color: #0a350d;
+    background-color: #000000;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -161,7 +163,7 @@
 .camera-preview,
 .captured-frame {
     width: 125%;
-    height: 300px;
+    height: 200px;
     max-width: 100%;
     overflow: hidden;
     border-radius: 10px;
