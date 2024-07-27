@@ -90,6 +90,7 @@ async function openModal(id) {
                 dataResearch.style.textAlign = "center";
                 dataItem.appendChild(dataResearch)
             });
+        }
 
       
 
@@ -107,8 +108,8 @@ async function openModal(id) {
                 dataItem.appendChild(dataTitle);
             });
     
-        
-        }}
+
+        }
         
 
         if (!dataItem.hasChildNodes()) {
