@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from django.views import View
-from apps.core.models import Teacher, Projects, Research, Articles
+from apps.core.models import Teacher, Projects, Research, Articles, AcademicD
 from django.http import JsonResponse
 import json
 
@@ -40,12 +40,17 @@ class TeacherDataResponse(View):
         research = Research.objects.filter(teacher=teacher)
         if research:
             research = [research.to_dict() for research in research]
+        
+        titles = AcademicD.objects.filter(teacher=teacher)
+        if titles:
+            titles = [title.to_dict() for title in titles]
 
         data = {
             'success': True,
             'projects': projects if projects else None,
             'articles': articles if articles else None,
-            'research': research if research else None
+            'research': research if research else None,
+            'titles': titles if titles else None
         }
 
         print(data)

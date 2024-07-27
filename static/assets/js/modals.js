@@ -75,6 +75,7 @@ async function openModal(id) {
                 dataItem.appendChild(dataArticle)
             });
         }
+    
 
         if (data.research != null) { 
 
@@ -90,7 +91,25 @@ async function openModal(id) {
                 dataItem.appendChild(dataResearch)
             });
 
-        }
+      
+
+        if (data.titles != null ) {
+
+            const h5 = document.createElement('h5');
+            h5.textContent = "Títulos Académicos";
+            h5.style.fontWeight = "bold";
+            dataItem.appendChild(h5);
+    
+            data.titles.forEach(element => {
+                const dataTitle = document.createElement("p");
+                dataTitle.innerText = element.title;  
+                dataTitle.style.textAlign = "center";
+                dataItem.appendChild(dataTitle);
+            });
+    
+        
+        }}
+        
 
         if (!dataItem.hasChildNodes()) {
 

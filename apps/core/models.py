@@ -71,7 +71,8 @@ class Teacher(models.Model):
             'image': self.img.url if self.img else None,
             'name': self.name,
             'bio': self.biography,
-            'cv': self.cv.url if self.cv else None
+            'cv': self.cv.url if self.cv else None,
+            
         }
 
     def delete(self, *args, **kwargs):
