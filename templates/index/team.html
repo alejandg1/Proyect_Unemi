@@ -3,108 +3,37 @@
 {% block content %}
 <link href="{% static 'assets/css/team.css' %}" rel="stylesheet">
 
-<div class="section-title">
-    <h2>Team</h2>
-   </div> 
+<h1>Team</h1>
 
 
 <div class="card-container">
-    <div class="card">
-        <div class="card-front">
-            <img src="{% static 'assets/img/fotop.jpg' %}" class="card-img-top" alt="Foto de perfil">
-            <div class="card-body">
-                <h5 class="card-title">Josue Guevara Reyes</h5>
-            </div>
-        </div>
-        <div class="card-back">
-            <div class="card-body">
-                <p>nsnsns</p>
-            </div>
-        </div>
-    </div>
+    {% for person in team %}
     
     <div class="card">
         <div class="card-front">
-            <img src="{% static 'assets/img/fotop.jpg' %}" class="card-img-top" alt="Foto de perfil">
+            <img src="{{person.img.url}}" class="card-img-top" alt="Foto de perfil">
             <div class="card-body">
-                <h5 class="card-title">Samuel Briones</h5>
+                <h5 class="card-title">{{person.name}}</h5>
             </div>
         </div>
         <div class="card-back">
             <div class="card-body">
-                <p>Más detalles sobre la persona</p>
+                {% if person.description %}
+                <p>{{person.description}}</p>
+                {% else %}
+                <p>Sin descripción</p>
+                {% endif %}
             </div>
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-front">
-            <img src="{% static 'assets/img/fotop.jpg' %}" class="card-img-top" alt="Foto de perfil">
-            <div class="card-body">
-                <h5 class="card-title">Fiorella Franco</h5>
-            </div>
-        </div>
-        <div class="card-back">
-            <div class="card-body">
-                <p>nsnsns</p>
-            </div>
-        </div>
-    </div>
+    {% empty %}
 
-    <div class="card">
-        <div class="card-front">
-            <img src="{% static 'assets/img/fotop.jpg' %}" class="card-img-top" alt="Foto de perfil">
-            <div class="card-body">
-                <h5 class="card-title">Alejandro Gomez</h5>
-            </div>
-        </div>
-        <div class="card-back">
-            <div class="card-body">
-                <p>nsnsns</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-front">
-            <img src="{% static 'assets/img/fotop.jpg' %}" class="card-img-top" alt="Foto de perfil">
-            <div class="card-body">
-                <h5 class="card-title">Willian Macias</h5>
-            </div>
-        </div>
-        <div class="card-back">
-            <div class="card-body">
-                <p>nsnsns</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-front">
-            <img src="{% static 'assets/img/fotop.jpg' %}" class="card-img-top" alt="Foto de perfil">
-            <div class="card-body">
-                <h5 class="card-title">Milca Toledo</h5>
-            </div>
-        </div>
-        <div class="card-back">
-            <div class="card-body">
-                <p>nsnsns</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-front">
-            <img src="{% static 'assets/img/fotop.jpg' %}" class="card-img-top" alt="Foto de perfil">
-            <div class="card-body">
-                <h5 class="card-title">Arianna Zuñiga</h5>
-            </div>
-        </div>
-        <div class="card-back">
-            <div class="card-body">
-                <p>nsnsns</p>
-            </div>
-        </div>
-    </div>
+          <div class="col-md-12 text-center">
+            <h3>No hay perfiles disponibles</h3>
+          </div>
+    
+    {% endfor %}    
+    
 </div>
 {% endblock content %}

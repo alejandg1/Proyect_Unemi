@@ -1,4 +1,4 @@
-from django.contrib.auth import login, logout
+from django.contrib.auth import login
 from django.utils.deprecation import MiddlewareMixin
 from apps.core.models import User
 
@@ -11,10 +11,3 @@ class TemporaryUserMiddleware(MiddlewareMixin):
                 username=f'temp_{username}', is_temp=True)
 
             login(request, temp_user)
-
-    def process_response(self, request, response):
-        if request.user.is_authenticated and request.user.is_temp and not request.session.exists(request.session.session_key):
-            logout(request)
-            request.user.is_active = False
-            request.user.delete()
-        return response

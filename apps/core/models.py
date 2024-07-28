@@ -1,3 +1,4 @@
+from typing import Any
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -31,9 +32,31 @@ class GeneratedImage(models.Model):
         super(GeneratedImage, self).delete(*args, **kwargs)
 
 
+class AcademicD (models.Model):
+    title = models.CharField(max_length=100, blank=False, null=False)
+    description = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    def to_dict(self) -> dict:
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description
+        }
+
+    def delete(self, *args, **kwargs):
+        super(AcademicD, self).delete(*args, **kwargs)
+
+
 class Teacher(models.Model):
     name = models.CharField(max_length=100)
     img = models.ImageField(upload_to='images/')
+    cargo = models.CharField(max_length=100, null=True, blank=True)
+    titles = models.ManyToManyField(AcademicD)
+    f_init = models.DateField(null=True, blank=True)
+    f_end = models.DateField(null=True, blank=True)
     biography = models.CharField(
         max_length=1000, null=True, blank=True, default=None)
     cv = models.FileField(upload_to='uploads/',
@@ -48,8 +71,16 @@ class Teacher(models.Model):
             'image': self.img.url if self.img else None,
             'name': self.name,
             'bio': self.biography,
-            'cv': self.cv.url if self.cv else None
+            'cv': self.cv.url if self.cv else None,
+            
         }
+
+    def delete(self, *args, **kwargs):
+
+        if self.img:
+            self.img.delete(save=False)
+
+        super(Teacher, self).delete(*args, **kwargs)
 
 
 class Articles(models.Model):
@@ -98,3 +129,19 @@ class Research(models.Model):
             'teacher_id': self.teacher.id,
             'research_name': self.research_name
         }
+
+
+class Team(models.Model):
+    name = models.CharField(max_length=100, blank=False, null=False)
+    img = models.ImageField(upload_to='team/')
+    description = models.TextField(null=True)
+
+    def delete(self, *args, **kwargs):
+
+        if self.img:
+            self.img.delete(save=False)
+
+        super(Team, self).delete(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
