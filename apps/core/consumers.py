@@ -34,8 +34,7 @@ class DallEChat(AsyncWebsocketConsumer):
         await self.channel_layer.group_add(self.room_name, self.channel_name)
         await self.accept()
 
-        print(f"Conexión aceptada para el usuario con ID {
-              self.user_id} en la sala: {self.room_name}")
+        print(f"Conexión aceptada para el usuario con ID {self.user_id} en la sala: {self.room_name}")
 
     async def disconnect(self, code):
         await self.channel_layer.group_discard(self.room_name, self.channel_name)
