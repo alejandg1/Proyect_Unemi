@@ -42,9 +42,7 @@ def collage_pill(group_img):
         countFiles = os.listdir(os.path.join(
             settings.MEDIA_ROOT, 'collages'))
         collageName = f'collage{len(countFiles)+1}.png'
-        collageURL = os.path.join(settings.MEDIA_ROOT,
-                                  'collages', f'collage{
-                                      len(countFiles)+1}.png')
+        collageURL = os.path.join(settings.MEDIA_ROOT,'collages', f'collage{len(countFiles)+1}.png')
 
         positions = [(x * WT+margin, y * HG+margin)
                      for y in range(rows) for x in range(cols)]
